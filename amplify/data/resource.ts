@@ -7,23 +7,33 @@ specifies that any user authenticated via an API key can "create", "read",
 "update", and "delete" any "Todo" records.
 =========================================================================*/
 const schema = a.schema({
-  Todo: a
+  QuestionType: a.enum(['MULTIPLE_CHOICE', 'FREE_RESPONSE']),
+  Question: a.customType({
+    type: a.ref('QuestionType'),
+    questionText: a.string().required(),
+    choices: a.string().array(),
+  }),
+  Project: a
     .model({
-      content: a.string(),
+      projectId: a.id().required(), // Unique identifier for the project
+      owner: a.string().required(), // Cognito user ID (sub)
+      name: a.string().required(), // Project name
+      QRcode: a.string(), // URL or identifier for the QR code
+      
     })
-    .authorization((allow) => [allow.publicApiKey()]),
+    .authorization((allow) => [
+      allow.owner(), // Only project owners can access their projects
+      allow.authenticated(), // Authenticated users can create projects
+    ]),
 });
+
 
 export type Schema = ClientSchema<typeof schema>;
 
 export const data = defineData({
   schema,
   authorizationModes: {
-    defaultAuthorizationMode: "apiKey",
-    // API Key is used for a.allow.public() rules
-    apiKeyAuthorizationMode: {
-      expiresInDays: 30,
-    },
+    defaultAuthorizationMode: "userPool",
   },
 });
 

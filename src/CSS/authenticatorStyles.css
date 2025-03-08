@@ -1,0 +1,12 @@
+.amplify-button--primary{
+    color: #00274C;
+    --amplify-internal-button-background-color: #FFCB05
+}
+
+.amplify-button--link{
+    color:  #00274C;
+}
+
+body {
+    background: #00274C !important;
+}
