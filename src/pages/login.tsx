@@ -9,7 +9,7 @@ const LoginPage = () => {
 
   return (
     <Authenticator>
-      {({signOut, user }) => {
+      {({user}) => {
         useEffect(() => {
           if (user) {
             navigate('/dashboard/${user.username}'); // ✅ Redirects only after login
