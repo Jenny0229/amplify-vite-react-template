@@ -1,15 +1,15 @@
-import { useEffect } from 'react';
+//import { useEffect } from 'react';
 import { Authenticator } from '@aws-amplify/ui-react';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import '@aws-amplify/ui-react/styles.css';
 import '../CSS/authenticatorStyles.css'; // Import CSS for styling
 
 const LoginPage = () => {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   return (
     <Authenticator>
-      {({user}) => {
+      {/* {({user}) => {
         useEffect(() => {
           if (user) {
             navigate('/dashboard/${user.username}'); // ✅ Redirects only after login
@@ -17,7 +17,7 @@ const LoginPage = () => {
         }, [user]);
 
         return <></>; // Empty return because we navigate immediately
-      }}
+      }} */}
     </Authenticator>
   );
 };
