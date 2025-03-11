@@ -1,11 +1,5 @@
 import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 
-/*== STEP 1 ===============================================================
-The section below creates a Todo database table with a "content" field. Try
-adding a new "isDone" field as a boolean. The authorization rule below
-specifies that any user authenticated via an API key can "create", "read",
-"update", and "delete" any "Todo" records.
-=========================================================================*/
 const schema = a.schema({
   QuestionType: a.enum(['MULTIPLE_CHOICE', 'FREE_RESPONSE']),
   Question: a.customType({
@@ -19,7 +13,7 @@ const schema = a.schema({
       owner: a.string().required(), // Cognito user ID (sub)
       name: a.string().required(), // Project name
       QRcode: a.string(), // URL or identifier for the QR code
-      
+      questions: a.ref('Question').array(),
     })
     .authorization((allow) => [
       allow.owner(), // Only project owners can access their projects

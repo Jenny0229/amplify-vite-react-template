@@ -1,23 +1,27 @@
-//import { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Authenticator } from '@aws-amplify/ui-react';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { Amplify } from 'aws-amplify';
 import '@aws-amplify/ui-react/styles.css';
-import '../CSS/authenticatorStyles.css'; // Import CSS for styling
+import '../CSS/authenticatorStyles.css';
+import outputs from "../../amplify_outputs.json";
+
+Amplify.configure(outputs);
+
+const AuthRedirect = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate('/dashboard');
+  }, [navigate]);
+
+  return null;
+};
 
 const LoginPage = () => {
-  //const navigate = useNavigate();
-
   return (
     <Authenticator>
-      {/* {({user}) => {
-        useEffect(() => {
-          if (user) {
-            navigate('/dashboard/${user.username}'); // ✅ Redirects only after login
-          }
-        }, [user]);
-
-        return <></>; // Empty return because we navigate immediately
-      }} */}
+      <AuthRedirect />
     </Authenticator>
   );
 };

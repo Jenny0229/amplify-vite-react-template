@@ -89,14 +89,55 @@
 
 // export default DashboardPage;
 
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { getCurrentUser, signOut } from "aws-amplify/auth";
+import { Amplify } from "aws-amplify";
+import outputs from "../../amplify_outputs.json";
+import { useNavigate } from 'react-router-dom';
 
-const DashboardPage = () => {
-  const { userId } = useParams(); // Get user ID from URL
-  console.log("User ID:", userId); // Use this to fetch user-specific data
 
-  return <h1>Welcome, {userId}!</h1>;
+Amplify.configure(outputs);
+
+const Dashboard = () => {
+  const [user, setUser] = useState<{ username?: string; userId?: string }>({});
+  const [loading, setLoading] = useState(true); // Prevent flickering on load
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const currentUser = await getCurrentUser(); // ✅ Fetch user inside useEffect
+        setUser({
+          username: currentUser.username,
+          userId: currentUser.userId,
+        });
+      } catch (error) {
+        console.error("User not authenticated:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
+  async function handleSignOut() {
+    await signOut();
+    navigate("/");
+    
+  }
+
+  if (loading) return <p>Loading...</p>; // Prevents UI flickering
+
+  return (
+    <div>
+      <h1>Welcome, {user.username || "User"}!</h1>
+      <p>User ID: {user.userId || "No user ID available"}</p>
+      <button type="button" onClick={handleSignOut}>
+        Sign out
+      </button>
+    </div>
+  );
 };
 
-export default DashboardPage;
-
+export default Dashboard;
