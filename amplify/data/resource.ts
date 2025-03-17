@@ -3,7 +3,7 @@ import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 const schema = a.schema({
   QuestionType: a.enum(['MULTIPLE_CHOICE', 'FREE_RESPONSE']),
   Question: a.customType({
-    type: a.ref('QuestionType'),
+    type: a.ref('QuestionType').required(),
     questionText: a.string().required(),
     choices: a.string().array(),
   }),

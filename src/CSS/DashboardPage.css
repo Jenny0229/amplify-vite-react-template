@@ -1,101 +1,146 @@
 /* Overall Page Styling */
+
+body {
+  background: #f9f9f9!important;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
 .dashboard-page {
-    padding: 2rem;
-    background-color: #f9f9f9;
-    color: #00274c;
-  }
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  justify-content: center; /* Center content vertically */
+  /*align-items: center;  Center content horizontally */
+  height: 100vh; /* Full height of the viewport */
+  width: 100vw; /* Full width of the viewport */
+  background-color: #f9f9f9; /* Adjust as needed */
+  box-sizing: border-box;
+}
+
+.title{
+  flex: 1;
+  justify-content: bottom;
+}
+
+.dashboard-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #00274c;
+}
+
+.create-button {
+  flex: 0.3;
+  display: block;
+  margin: 0 auto 0rem auto;
+  background-color: #ffcb05; /* Michigan Maize */
+  color: #00274c; /* Michigan Blue */
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 3%;
+}
+
+.create-button:hover {
+  background-color: #e0b400; /* Darker Maize */
+}
+
+.research-list {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.research-card {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.research-details {
+  flex: 1;
+}
+
+.research-title {
+  font-size: 1.5rem;
+  color: #00274c;
+  margin: 0;
+}
+
+.research-date {
+  font-size: 0.9rem;
+  color: #666666;
+  margin: 0;
+}
+
+/* Button Styling */
+.deploy-edit-container {
+  display: flex;
+  gap: 0.5rem; /* Space between Deploy and Edit buttons */
+}
+
+.deploy-button {
+  background-color: #00274c; /* Michigan Blue */
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.deploy-button:hover {
+  background-color: #003b74; /* Darker Blue */
+}
+
+.edit-button {
+  background-color: #ffcb05; /* Michigan Maize */
+  color: #00274c;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.edit-button:hover {
+  background-color: #e0b400; /* Darker Maize */
+}
+
+
+.top-bar {
+  display: flex;
+  flex: 0.5;
+  justify-content: flex-end;
+}
+
+.user-button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: black;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
   
-  .dashboard-title {
-    text-align: center;
-    font-size: 2.5rem;
-    color: #00274c;
-    margin-bottom: 2rem;
-  }
-  
-  .create-button {
-    display: block;
-    margin: 0 auto 2rem auto;
-    background-color: #ffcb05; /* Michigan Maize */
-    color: #00274c; /* Michigan Blue */
-    padding: 0.7rem 1.5rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .create-button:hover {
-    background-color: #e0b400; /* Darker Maize */
-  }
-  
-  .research-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-  }
-  
-  .research-card {
-    background-color: #ffffff;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .research-details {
-    flex: 1;
-  }
-  
-  .research-title {
-    font-size: 1.5rem;
-    color: #00274c;
-    margin: 0;
-  }
-  
-  .research-date {
-    font-size: 0.9rem;
-    color: #666666;
-    margin: 0;
-  }
-  
-  /* Button Styling */
-  .deploy-edit-container {
-    display: flex;
-    gap: 0.5rem; /* Space between Deploy and Edit buttons */
-  }
-  
-  .deploy-button {
-    background-color: #00274c; /* Michigan Blue */
-    color: #ffffff;
-    border: none;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .deploy-button:hover {
-    background-color: #003b74; /* Darker Blue */
-  }
-  
-  .edit-button {
-    background-color: #ffcb05; /* Michigan Maize */
-    color: #00274c;
-    border: none;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .edit-button:hover {
-    background-color: #e0b400; /* Darker Maize */
-  }
   
