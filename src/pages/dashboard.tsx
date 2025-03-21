@@ -36,7 +36,7 @@
 
 
 
-// const Dashboard = () => {
+ const Dashboard = () => {
 //   const [user, setUser] = useState<{ username?: string; userId?: string }>({});
 //   const [loading, setLoading] = useState(true); // Prevent flickering on load
 //   const navigate = useNavigate();
@@ -166,6 +166,6 @@
 //       </div>
 //     </div>
 //   );
-// };
+ };
 
-// export default Dashboard;
+ export default Dashboard;
